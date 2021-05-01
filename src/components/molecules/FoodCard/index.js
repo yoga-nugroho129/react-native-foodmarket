@@ -7,7 +7,7 @@ const FooCard = ({image}) => {
     <View style={styles.card}>
       <Image source={image} style={styles.image} />
       <View style={styles.content}>
-        <Text style={styles.title}>Cherry Healhty</Text>
+        <Text style={styles.title}>Soup Healhty</Text>
         <Rating />
       </View>
     </View>
@@ -22,12 +22,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: 'hidden',
     width: 200,
-    shadowColor: '#000000',
-    shadowOffset: {height: 7, width: 0},
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-    elevation: 14,
     marginRight: 24,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   image: {
     height: 140,

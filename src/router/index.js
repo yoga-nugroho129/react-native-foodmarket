@@ -6,11 +6,13 @@ import {
   DetailFood,
   Home,
   Order,
+  OrderSummary,
   Profile,
   SignIn,
   SignUp,
   SignUpAddress,
   SplashScreen,
+  SuccessCheckout,
   SuccessSignUp,
 } from '../pages';
 import Testing from '../pages/Testing';
@@ -70,13 +72,23 @@ const Router = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="Testing"
-        component={Testing}
+        name="DetailFood"
+        component={DetailFood}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="DetailFood"
-        component={DetailFood}
+        name="OrderSummary"
+        component={OrderSummary}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SuccessCheckout"
+        component={SuccessCheckout}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Testing"
+        component={Testing}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

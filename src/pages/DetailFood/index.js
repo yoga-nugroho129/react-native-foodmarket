@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   ImageBackground,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -9,11 +8,8 @@ import {
 } from 'react-native';
 import {FoodDummy6, IcBackWhite} from '../../assets';
 import {Button, Counter, Gap, Rating} from '../../components';
-import {useNavigation} from '@react-navigation/native';
 
-const DetailFood = () => {
-  const navigation = useNavigation();
-
+const DetailFood = ({navigation}) => {
   return (
     <View style={styles.page}>
       <ImageBackground source={FoodDummy6} style={styles.background}>
@@ -39,7 +35,7 @@ const DetailFood = () => {
             pola makan yang cukup tinggi dengan mengutamakan diet yang sehat dan
             teratur.
           </Text>
-          <Gap height={16} />
+          <Gap height={12} />
           <Text style={styles.ingredient}>Ingeredients:</Text>
           <Text style={styles.ingredientList}>
             Seledri, telur, blueberry, madu.
@@ -51,7 +47,11 @@ const DetailFood = () => {
             <Text style={styles.priceTotal}>IDR 12.289.000</Text>
           </View>
           <View style={styles.buttonContainer}>
-            <Button text={'Order Now'} color={'#FFC700'} />
+            <Button
+              text={'Order Now'}
+              color={'#FFC700'}
+              onPress={() => navigation.navigate('OrderSummary')}
+            />
           </View>
         </View>
       </View>
@@ -64,7 +64,7 @@ export default DetailFood;
 const styles = StyleSheet.create({
   page: {flex: 1},
   background: {
-    height: 360,
+    height: 300,
     resizeMode: 'cover',
     paddingVertical: 24,
     paddingHorizontal: 16,
@@ -74,15 +74,18 @@ const styles = StyleSheet.create({
     width: 30,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    borderRadius: 8,
   },
   contentContainer: {
     flex: 1,
     backgroundColor: '#FFFFFF',
     paddingHorizontal: 16,
-    paddingVertical: 24,
+    paddingTop: 24,
+    paddingBottom: 16,
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
-    marginTop: -40,
+    marginTop: -60,
   },
   mainContent: {flex: 1},
   header: {

@@ -25,7 +25,7 @@ const SignIn = ({navigation}) => {
           text={'Create New Account'}
           color={'#8D92A3'}
           textColor={'#FFFFFF'}
-          onPress={() => navigation.navigate('Testing')}
+          onPress={() => navigation.navigate('SignUp')}
         />
       </View>
     </View>

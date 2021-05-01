@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import Rating from '../Rating';
 import {useNavigation} from '@react-navigation/native';
 
-const ItemFoodList = ({image}) => {
+const ItemFoodList = ({image, rating, items}) => {
   const navigation = useNavigation();
 
   return (
@@ -16,7 +16,8 @@ const ItemFoodList = ({image}) => {
           <Text style={styles.title}>Soup Bumil</Text>
           <Text style={styles.price}>IDR. 80.000</Text>
         </View>
-        <Rating />
+        {items && <Text>{items} items</Text>}
+        {rating && <Rating />}
       </View>
     </TouchableOpacity>
   );

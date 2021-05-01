@@ -16,7 +16,7 @@ const renderTabBar = props => (
     {...props}
     scrollEnabled={true}
     indicatorStyle={styles.indicatorStyle}
-    style={{backgroundColor: '#FFFFFF'}}
+    style={styles.tabStyle}
     tabStyle={{width: 'auto'}}
     renderLabel={({route, focused}) => (
       <Text style={styles.tabBarText(focused)}>{route.title}</Text>
@@ -43,18 +43,22 @@ const NewTaste = () => {
 
 const Popular = () => {
   return (
-    <View style={styles.listContainer}>
-      <ItemFoodList image={FoodDummy3} />
-      <ItemFoodList image={FoodDummy2} />
-    </View>
+    <Animated.ScrollView>
+      <View style={styles.listContainer}>
+        <ItemFoodList image={FoodDummy3} />
+        <ItemFoodList image={FoodDummy2} />
+      </View>
+    </Animated.ScrollView>
   );
 };
 
 const Recommended = () => {
   return (
-    <View style={styles.listContainer}>
-      <ItemFoodList image={FoodDummy2} />
-    </View>
+    <Animated.ScrollView>
+      <View style={styles.listContainer}>
+        <ItemFoodList image={FoodDummy2} />
+      </View>
+    </Animated.ScrollView>
   );
 };
 
@@ -92,6 +96,13 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     backgroundColor: '#FFFFFF',
     paddingHorizontal: 24,
+  },
+  tabStyle: {
+    backgroundColor: '#FFFFFF',
+    shadowOpacity: 0,
+    elevation: 0,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F2F2F2',
   },
   indicatorStyle: {
     backgroundColor: '#020202',
