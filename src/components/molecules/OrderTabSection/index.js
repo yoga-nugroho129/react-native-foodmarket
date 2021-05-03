@@ -10,7 +10,7 @@ import {
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import {ItemFoodList} from '..';
 import {FoodDummy1, FoodDummy2, FoodDummy3, FoodDummy4} from '../../../assets';
-import {useNavigation} from '@react-navigation/native';
+// import {useNavigation} from '@react-navigation/native';
 
 const renderTabBar = props => (
   <TabBar
@@ -25,108 +25,79 @@ const renderTabBar = props => (
   />
 );
 
-const NewTaste = () => {
-  const navigation = useNavigation();
-
+const PastOrders = () => {
   return (
     <Animated.ScrollView>
       <View style={styles.listContainer}>
         <ItemFoodList
+          type="pastOrders"
+          price={'220.000'}
+          items={2}
           image={FoodDummy1}
-          onPress={() => navigation.navigate('DetailFood')}
-          type={'homeProduct'}
+          date={'Jun 12, 4:00'}
         />
         <ItemFoodList
+          type="pastOrders"
+          price={'320.000'}
+          items={3}
           image={FoodDummy2}
-          onPress={() => navigation.navigate('DetailFood')}
-          type={'homeProduct'}
+          date={'Jun 16, 5:00'}
+          status="canceled"
         />
         <ItemFoodList
+          type="pastOrders"
+          price={'120.000'}
+          items={1}
           image={FoodDummy3}
-          onPress={() => navigation.navigate('DetailFood')}
-          type={'homeProduct'}
+          date={'Jun 19, 9:00'}
         />
         <ItemFoodList
+          type="pastOrders"
+          price={'420.000'}
+          items={4}
           image={FoodDummy4}
-          onPress={() => navigation.navigate('DetailFood')}
-          type={'homeProduct'}
-        />
-        <ItemFoodList
-          image={FoodDummy1}
-          onPress={() => navigation.navigate('DetailFood')}
-          type={'homeProduct'}
-        />
-        <ItemFoodList
-          image={FoodDummy3}
-          onPress={() => navigation.navigate('DetailFood')}
-          type={'homeProduct'}
-        />
-        <ItemFoodList
-          image={FoodDummy4}
-          onPress={() => navigation.navigate('DetailFood')}
-          type={'homeProduct'}
-        />
-        <ItemFoodList
-          image={FoodDummy1}
-          onPress={() => navigation.navigate('DetailFood')}
-          type={'homeProduct'}
+          date={'Jun 22, 4:30'}
         />
       </View>
     </Animated.ScrollView>
   );
 };
 
-const Popular = () => {
-  const navigation = useNavigation();
+const InProgress = () => {
+  // const navigation = useNavigation();
 
   return (
     <Animated.ScrollView>
       <View style={styles.listContainer}>
         <ItemFoodList
           image={FoodDummy3}
-          onPress={() => navigation.navigate('DetailFood')}
-          type={'homeProduct'}
+          type="inProgress"
+          price={'128.000'}
+          items={2}
         />
         <ItemFoodList
           image={FoodDummy2}
-          onPress={() => navigation.navigate('DetailFood')}
-          type={'homeProduct'}
+          type="inProgress"
+          price={'128.000'}
+          items={2}
         />
       </View>
     </Animated.ScrollView>
   );
 };
 
-const Recommended = () => {
-  const navigation = useNavigation();
-
-  return (
-    <Animated.ScrollView>
-      <View style={styles.listContainer}>
-        <ItemFoodList
-          image={FoodDummy2}
-          onPress={() => navigation.navigate('DetailFood')}
-          type={'homeProduct'}
-        />
-      </View>
-    </Animated.ScrollView>
-  );
-};
-
-const HomeTabSection = () => {
+const OrderTabSection = () => {
   const layout = useWindowDimensions();
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    {key: '1', title: 'New Taste'},
-    {key: '2', title: 'Popular'},
-    {key: '3', title: 'Recommended'},
+    {key: '1', title: 'In Progress'},
+    {key: '2', title: 'Past Orders'},
   ]);
 
   const renderScene = SceneMap({
-    1: NewTaste,
-    2: Popular,
-    3: Recommended,
+    1: InProgress,
+    2: PastOrders,
   });
 
   return (
@@ -140,7 +111,7 @@ const HomeTabSection = () => {
   );
 };
 
-export default HomeTabSection;
+export default OrderTabSection;
 
 const styles = StyleSheet.create({
   listContainer: {

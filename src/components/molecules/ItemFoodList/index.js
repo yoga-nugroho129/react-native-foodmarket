@@ -1,23 +1,78 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import Rating from '../Rating';
-import {useNavigation} from '@react-navigation/native';
 
-const ItemFoodList = ({image, rating, items}) => {
-  const navigation = useNavigation();
+const ItemFoodList = ({
+  image,
+  rating,
+  items,
+  price,
+  onPress,
+  date,
+  status,
+  type,
+}) => {
+  const renderContent = () => {
+    switch (type) {
+      case 'homeProduct':
+        return (
+          <>
+            <View style={styles.content}>
+              <Text style={styles.title}>Soup Bumil</Text>
+              <Text style={styles.price}>IDR. 80.000</Text>
+            </View>
+            <Rating />
+          </>
+        );
+
+      case 'orderSummary':
+        return (
+          <>
+            <View style={styles.content}>
+              <Text style={styles.title}>Soup Bumil</Text>
+              <Text style={styles.price}>IDR. 80.000</Text>
+            </View>
+            <Text style={styles.items}>{items} items</Text>
+          </>
+        );
+
+      case 'inProgress':
+        return (
+          <View style={styles.content}>
+            <Text style={styles.title}>Soup Bumil</Text>
+            <Text style={styles.price}>
+              {items} items | IDR. {price}
+            </Text>
+          </View>
+        );
+
+      case 'pastOrders':
+        return (
+          <>
+            <View style={styles.content}>
+              <Text style={styles.title}>Soup Bumil</Text>
+              <Text style={styles.price}>
+                {items} items | IDR. {price}
+              </Text>
+            </View>
+            <View>
+              <Text style={styles.date}>{date}</Text>
+              {status === 'canceled' && (
+                <Text style={styles.canceled}>Canceled</Text>
+              )}
+            </View>
+          </>
+        );
+      default:
+        break;
+    }
+  };
 
   return (
-    <TouchableOpacity
-      onPress={() => navigation.navigate('DetailFood')}
-      activeOpacity={0.7}>
+    <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
       <View style={styles.foodContainer}>
         <Image source={image} style={styles.image} />
-        <View style={styles.content}>
-          <Text style={styles.title}>Soup Bumil</Text>
-          <Text style={styles.price}>IDR. 80.000</Text>
-        </View>
-        {items && <Text>{items} items</Text>}
-        {rating && <Rating />}
+        {renderContent()}
       </View>
     </TouchableOpacity>
   );
@@ -50,5 +105,16 @@ const styles = StyleSheet.create({
     color: '#8D92A3',
     fontFamily: 'Poppins-Regular',
     fontSize: 13,
+  },
+  items: {fontSize: 13, fontFamily: 'Poppins-Regular', color: '#8D92A3'},
+  date: {
+    color: '#8D92A3',
+    fontSize: 10,
+    fontFamily: 'Poppins-Regular',
+  },
+  canceled: {
+    color: '#D9435E',
+    fontSize: 10,
+    fontFamily: 'Poppins-Regular',
   },
 });
